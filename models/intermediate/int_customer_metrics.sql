@@ -36,11 +36,14 @@ customer_order_history as (
 -- 3. Final aggregation to the unique customer level
 select
     customer_unique_id,
-    city,
-    state,
+    
+    -- Use max() to ensure if a customer moved, we only keep one location record
+    max(city) as city,
+    max(state) as state,
+    
     count(distinct order_id) as total_orders,
     sum(total_order_value) as lifetime_value,
-    round(avg(total_order_value), 3) as average_order_value
+    avg(total_order_value) as average_order_value
 
 from customer_order_history
-group by 1, 2, 3
+group by 1

@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Master fact table recording all transactions, logistics, and revenue."
+    columns:
+      - name: order_id
+        description: "Primary key for the order."
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        description: "Current lifecycle state of the transaction."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
+
+  - name: dim_customers
+    description: "Customer dimension table including lifetime value metrics."
+    columns:
+      - name: customer_unique_id
+        description: "Primary key identifying unique customers."
+        tests:
+          - unique
+          - not_null
