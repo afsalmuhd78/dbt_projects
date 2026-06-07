@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    database: OLIST_RAW
+    schema: RETAIL
+    tables:
+      - name: CUSTOMERS
+      - name: GEOLOCATION
+      - name: ORDER_ITEMS
+      - name: ORDER_PAYMENTS
+      - name: ORDER_REVIEWS
+      - name: ORDERS
+      - name: PRODUCTS
+      - name: SELLERS
+      - name: CATEGORY_TRANSLATIONS
